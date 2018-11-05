@@ -1,0 +1,29 @@
+server:
+  port: 8071
+
+spring:
+  application:
+    name: services-server
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+
+zuul:
+  host:
+    socket-timeout-millis: 100000
+  prefix: /services
+  routes:
+    person-service:
+      path: /person-service/**
+      url: http://localhost:8072
+    employee-service:
+      path: /employee-service/**
+      url: http://localhost:8073
+    student-service:
+      path: /student-service/**
+      url: http://localhost:8074
+
